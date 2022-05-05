@@ -2,19 +2,29 @@
 $(document).ready(function(){
 
     //$('.password').on('change', checkFunc)
-    $('.password').on('keydown', function(evt) {
-        let test = String.fromCharCode(evt.keyCode);
-        console.log(test);
+    $('.password').on('change', function() {
 
-        const array = [...test];
-        console.log(array)
+        let checkValue = $('.password').val();
+        const array = [...checkValue];
+        console.log(checkValue);
 
-       
-        if(array[array.length - 1] === 'h')
+        const toCheck =  checkValue;
+
+        const re = new RegExp(/^[a-zA-Z0-9_!?]+$/);
+
+        if(!re.test(toCheck)) 
         {
             alert('ACHTUNG')
-            return;
+            $('.submit_button').attr("disabled", true);
         }
+        else
+        {
+            $('.submit_button').attr("disabled", false);
+            console.log(re.test(toCheck))
+        }
+
+
+
     })
 })
 
